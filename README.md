@@ -1,5 +1,5 @@
 # CT414-Java-RMI
-This assignment is an implementation of a basic share trading system using Java RMI from my Distributed Systems and Co-operative Computing module.
+This assignment is an implementation of a basic share trading system using Java RMI. Using Remote Method Invocation, it runs both a server and client from the command terminal to buy/sell shares and deposit/withdraw funds. The available shares are read in from a .csv file.
 
 ### What is Java RMI??
 Java RMI (Remote Method Invocation) is a Java API that allows a Java program to invoke methods on objects running in other JVMs (Java Virtual Machines).

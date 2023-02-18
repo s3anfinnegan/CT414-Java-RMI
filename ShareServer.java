@@ -1,51 +1,35 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.util.List;
+import java.util.HashMap;
 
 
 public interface ShareServer extends Remote {
     //login 
-    long login(String username, String password) throws RemoteException, AuthenticationFailed;
-
-    //paramenters for token
-    void someRemoteMethod(long token, Object timeout) throws RemoteException, AuthenticationFailed;
+    long login(String username, String password) throws RemoteException, AuthentificationFailed;
 
     //download all shares currently available to purchase on server
-    List<Share> getAllShares(long token) throws RemoteException, AuthenticationFailed;
+    HashMap<String, Share> getAllShares(long token) throws RemoteException, AuthentificationFailed;
 
     //transfer funds to trading account (should require token)
-    void depositFunds(long token, double amount) throws RemoteException, AuthenticationFailed;
+    void depositFunds(long token, float amount) throws RemoteException, AuthentificationFailed;
 
     //withdraw funds (exception for insufficient funds)
-    void withdrawFunds(long token, double amount) throws RemoteException, AuthenticationFailed, InsufficientFundsException;
+    void withdrawFunds(long token, float amount) throws RemoteException, AuthentificationFailed, InsufficientFundsException;
 
     //purchase shares from account 
-    void purchaseShares(long token, String currency, int quantity) throws RemoteException, AuthenticationFailed, InsufficientFundsException;
+    void purchaseShares(long token, String name, int amount) throws RemoteException, AuthentificationFailed, InsufficientFundsException;
 
     //list of shares owned and their currency value
-    List<ShareHolding> getShareHoldings(long token) throws RemoteException, AuthenticationFailed;
+    HashMap<String, ShareHolding> getShareHoldings(long token) throws RemoteException, AuthentificationFailed;
 }
 
 
-//authentification failure
-class AuthenticationFailed extends Exception {
-    //exceptions means authentification failure (incorrect token or timeout)
-    public AuthenticationFailed(String message) {
-        message = "Error: token invalid"
-        super(message);
-    }
-}
 
-//insufficient funds
-class InsufficientFundsException extends Exception {
-    public InsufficientFundsException(String message) {
-        message = "Error: balance insufficient to withdraw desired amount"
-        super(message);
-    }
-}
+
+
 
 //share holding position (currency, quantity, value)
-class ShareHolding {
+/*class ShareHolding {
     private final String currency;
     private final int quantity;
     private final double value;
@@ -67,6 +51,6 @@ class ShareHolding {
     public double getValue() {
         return value;
     }
-}
+}*/
 
 

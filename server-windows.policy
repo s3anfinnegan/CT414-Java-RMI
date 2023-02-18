@@ -1,0 +1,3 @@
+grant codeBase "file:/C:/Users/sean2/OneDrive/Desktop/CT414-Java-RMI" {
+    permission java.security.AllPermission;
+};
